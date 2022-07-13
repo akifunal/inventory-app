@@ -1,0 +1,62 @@
+name: Dev Pipeline
+on:
+    push:
+        branches:
+            - 'feat/**'
+            - 'fix/**'
+            - 'docs/**'
+            - 'style/**'
+            - 'refactor/**'
+            - 'chore/**'
+            - 'revert/**'
+            - 'perf/**'
+            - 'ci/**'
+    pull_request:
+        branches:
+            - 'feat/**'
+            - 'fix/**'
+            - 'docs/**'
+            - 'style/**'
+            - 'refactor/**'
+            - 'chore/**'
+            - 'revert/**'
+            - 'perf/**'
+            - 'ci/**'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Cache Dependencies
+              uses: c-hive/gha-yarn-cache@v2
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+
+            - name: Format Check
+              run: yarn format
+
+            - name: Lint Check
+              run: yarn lint
+
+            - name: Type Check
+              run: yarn check-types
+
+            - name: Build
+              run: |
+                  yarn install --frozen-lockfile
+                  yarn build
+
+            - name: Run unit tests
+              run: yarn test:ci
+
+            - name: Run e2e tests
+              uses: cypress-io/github-action@v4
+              with:
+                  start: yarn start
+                  wait-on: 'http://localhost:3000'

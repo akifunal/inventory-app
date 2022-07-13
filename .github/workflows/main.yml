@@ -1,0 +1,49 @@
+name: Main Pipeline
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        container:
+            image: cypress/browsers:node16.14.0-chrome99-ff97
+            options: --user 1001
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Install dependencies
+              uses: cypress-io/github-action@v4
+              with:
+                  runTests: false
+
+            - name: Format Check
+              run: yarn format
+
+            - name: Lint Check
+              run: yarn lint
+
+            - name: Type Check
+              run: yarn check-types
+
+            - name: Run unit tests
+              run: yarn test:ci
+
+            # Run Cypress tests
+            - name: Run e2e tests
+              uses: cypress-io/github-action@v4
+              with:
+                  browser: chrome
+                  wait-on: 'http://localhost:3000'
+                  build: yarn build
+                  start: yarn start
+
+    # TODO vercel deploy steps will be added
+    # vercel-deploy:
+    #     runs-on: ubuntu-latest
+    #     needs: [build]
+    #     steps:
+    #         - uses: actions/checkout@v2
