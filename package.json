@@ -6,6 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"start:docker": "docker compose -p inventory-app up -d && yarn db:migrate:dev",
 		"postinstall": "prisma generate",
 		"prepare": "husky install",
 		"format": "prettier -c .",
