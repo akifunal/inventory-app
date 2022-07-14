@@ -4,5 +4,7 @@ This is an app bootstrapped according to the [init.tips](https://init.tips) stac
 
 ## Run project with docker container and migrate db
 
+```
 docker compose up -d
 yarn db:migrate:dev
+```
