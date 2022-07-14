@@ -4,12 +4,28 @@ This is an app bootstrapped according to the [init.tips](https://init.tips) stac
 
 ## Install dependencies
 
-```
+```bash
 yarn
 ```
 
-## Run project in docker container and migrate db
+## Start Docker Daemon
 
+Open [Docker desktop](https://www.docker.com/products/docker-desktop/).
+
+## Run project in development mode
+
+```bash
+yarn start:dev
 ```
-yarn start:docker
+
+## Run project in production mode
+
+```bash
+yarn start:prod
+```
+
+## Run project in production mode (with docker-compose)
+
+```bash
+yarn start:prod:docker
 ```

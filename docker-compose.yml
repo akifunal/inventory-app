@@ -17,3 +17,5 @@ services:
             - '${APP_PORT}:${APP_PORT}'
         depends_on:
             - database
+        environment:
+            POSTGRES_DOMAIN: 'database'
