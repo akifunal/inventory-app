@@ -6,7 +6,11 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"start:docker": "docker compose -p inventory-app up -d && yarn db:migrate:dev",
+		"wait:db": "wait-port localhost:5432",
+		"start:db": "docker compose up -d database",
+		"start:dev": "yarn start:db && yarn wait:db && yarn db:migrate:dev && yarn start",
+		"start:prod": "yarn start:db && yarn build && yarn wait:db && yarn db:migrate:dev && yarn start",
+		"start:prod:docker": "docker compose up -d && yarn wait:db && yarn db:migrate:dev",
 		"postinstall": "prisma generate",
 		"prepare": "husky install",
 		"format": "prettier -c .",
@@ -15,7 +19,7 @@
 		"lint": "next lint",
 		"lint:fix": "next lint --fix .",
 		"lint-staged": "lint-staged",
-		"db:migrate:dev": "dotenv -e .env.development -- prisma migrate dev --name postgres-init",
+		"db:migrate:dev": "prisma migrate dev --name postgres-init",
 		"db:migrate:prod": "prisma migrate deploy",
 		"db:push": "prisma db push",
 		"db:seed": "prisma seed dev",
@@ -58,7 +62,6 @@
 		"@types/react-dom": "18.0.6",
 		"autoprefixer": "10.4.7",
 		"cypress": "10.3.0",
-		"dotenv-cli": "6.0.0",
 		"eslint": "8.19.0",
 		"eslint-config-next": "12.2.2",
 		"eslint-config-prettier": "8.5.0",
@@ -71,6 +74,7 @@
 		"prisma": "4.0.0",
 		"start-server-and-test": "1.14.0",
 		"tailwindcss": "3.1.6",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"wait-port": "0.3.0"
 	}
 }
