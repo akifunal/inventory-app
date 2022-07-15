@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<div className='flex min-h-screen w-screen flex-col items-center justify-center overflow-y-scroll p-4'>
+			<div className='flex min-h-screen w-screen flex-col items-center justify-center overflow-y-scroll p-4 font-lato'>
 				<h2 className='text-[3rem] font-extrabold text-gray-700 md:text-[5rem] lg:text-[5rem]'>
 					Create <span className='text-purple-300'>T3</span> App
 				</h2>
