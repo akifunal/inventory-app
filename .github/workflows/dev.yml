@@ -39,6 +39,9 @@ jobs:
               with:
                   node-version: '16.x'
 
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
             - name: Format Check
               run: yarn format
 
@@ -49,9 +52,7 @@ jobs:
               run: yarn check-types
 
             - name: Build
-              run: |
-                  yarn install --frozen-lockfile
-                  yarn build
+              run: yarn build
 
             - name: Run unit tests
               run: yarn test:ci
