@@ -44,9 +44,9 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         env:
-            VERCEL_TOKEN: 'UKjC9XeNBVFZYXPUfMaLYzmY'
+            VERCEL_TOKEN: 'Er0veIQINTzgDibf1wfKwlo5'
             VERCEL_ORG_ID: 'mEtXaNaX3NUKvp5zuScr7eKp'
-            VERCEL_PROJECT_ID: 'prj_oLfIavnJ6N9GCrNeuTm03g8tQ6By'
+            VERCEL_PROJECT_ID: 'prj_3mDpkKuwkVS0BrqXpKykNTLOhUfI'
         needs: [build]
         steps:
             - name: Checkout Code
