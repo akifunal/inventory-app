@@ -4,6 +4,7 @@ import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
 	const hello = trpc.useQuery(['example.hello', { text: 'from tRPC' }]);
+	const users = trpc.useQuery(['example.getAll']);
 
 	return (
 		<>
@@ -81,6 +82,11 @@ const Home: NextPage = () => {
 				<div className='flex w-full items-center justify-center pt-6 text-2xl text-blue-500'>
 					{hello.data ? (
 						<p>{hello.data.greeting}</p>
+					) : (
+						<p>Loading..</p>
+					)}
+					{users.data ? (
+						<p>&nbsp;{users.data[0]?.name}</p>
 					) : (
 						<p>Loading..</p>
 					)}
