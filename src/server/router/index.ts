@@ -1,14 +1,15 @@
-// src/server/router/index.ts
-import superjson from 'superjson';
-import { createRouter } from '../context';
+import { t } from './trpc';
 
-import { authRouter } from './auth';
-import { exampleRouter } from './example';
+import { authRouter } from './subroutes/auth';
+import { exampleRouter } from './subroutes/example';
 
-export const appRouter = createRouter()
-	.transformer(superjson)
-	.merge('example.', exampleRouter)
-	.merge('auth.', authRouter);
+// export const appRouter = t.mergeRouters(authRouter, exampleRouter);
+
+/*eslint sort-keys: "error"*/
+export const appRouter = t.router({
+	auth: authRouter,
+	example: exampleRouter,
+});
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

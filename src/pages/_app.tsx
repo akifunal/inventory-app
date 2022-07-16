@@ -1,11 +1,7 @@
-import { withTRPC } from '@trpc/next';
+import { trpc } from '@/utils/trpc';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
-import superjson from 'superjson';
-
-import { url } from '@/constants';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import type { AppRouter } from '../server/router';
 import '../styles/globals.css';
 
 const MyApp: AppType = ({
@@ -21,19 +17,4 @@ const MyApp: AppType = ({
 	);
 };
 
-export default withTRPC<AppRouter>({
-	config({ ctx }) {
-		return {
-			url,
-			transformer: superjson,
-			/**
-			 * @link https://react-query.tanstack.com/reference/QueryClient
-			 */
-			// queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-		};
-	},
-	/**
-	 * @link https://trpc.io/docs/ssr
-	 */
-	ssr: true,
-})(MyApp);
+export default trpc.withTRPC(MyApp);
