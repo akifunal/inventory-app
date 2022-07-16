@@ -5,18 +5,31 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+            DATABASE_URL: postgresql://testuser:dbpass@postgres:5432/testdb?schema=public
+            NODE_ENV: test
+            NEXTAUTH_SECRET: supersecret
         container:
             image: cypress/browsers:node16.14.0-chrome99-ff97
-            options: --user 1001
+        services:
+            postgres:
+                image: postgres:latest
+                env:
+                    POSTGRES_USER: testuser
+                    POSTGRES_PASSWORD: dbpass
+                    POSTGRES_DB: testdb
+                ports:
+                    - 5432:5432
 
         steps:
             - name: Checkout Code
               uses: actions/checkout@v3
 
-            - name: Install dependencies
+            - name: Install dependencies && build
               uses: cypress-io/github-action@v4
               with:
                   runTests: false
+                  build: yarn build
 
             - name: Format Check
               run: yarn format
@@ -30,14 +43,11 @@ jobs:
             - name: Run unit tests
               run: yarn test:ci
 
-            # Run Cypress tests
             - name: Run e2e tests
               uses: cypress-io/github-action@v4
               with:
                   browser: chrome
-                  wait-on: 'http://localhost:3000'
-                  build: yarn build
-                  start: yarn start
+                  command: yarn e2e:ci
 
     deploy:
         runs-on: ubuntu-latest
@@ -45,7 +55,7 @@ jobs:
             VERCEL_TOKEN: 'Er0veIQINTzgDibf1wfKwlo5'
             VERCEL_ORG_ID: 'mEtXaNaX3NUKvp5zuScr7eKp'
             VERCEL_PROJECT_ID: 'prj_3mDpkKuwkVS0BrqXpKykNTLOhUfI'
-        needs: [build]
+        needs: build
         steps:
             - name: Checkout Code
               uses: actions/checkout@v3

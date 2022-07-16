@@ -1,7 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
-	console.log('doc env: ', process.env);
 	return (
 		<Html>
 			<Head>
