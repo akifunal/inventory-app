@@ -3,8 +3,8 @@ import Head from 'next/head';
 import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
-	const hello = trpc.useQuery(['example.hello', { text: 'from tRPC' }]);
-	const users = trpc.useQuery(['example.getAll']);
+	const hello = trpc.proxy.example.hello.useQuery({ text: 'from tRPC' });
+	const users = trpc.proxy.example.getAll.useQuery();
 
 	return (
 		<>
