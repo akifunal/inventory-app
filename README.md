@@ -1,6 +1,8 @@
 # Inventory App
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+Inventory app that will help us manage our inventory.
+
+Demo: [Live Inventory App](https://inventory-app-akifunal.vercel.app/)
 
 ## Install dependencies
 
