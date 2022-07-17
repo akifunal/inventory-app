@@ -1,10 +1,46 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
-	const hello = trpc.proxy.example.hello.useQuery({ text: 'from tRPC' });
-	const users = trpc.proxy.example.getAll.useQuery();
+	const utils = trpc.useContext();
+	const [productName, setProductName] = useState('');
+	const [categoryName, setCategoryName] = useState('');
+	const [productQuantity, setProductQuantity] = useState(0);
+
+	// TODO create a component for toasters
+	const notify = () => toast('Here is my toast!');
+	const sucessNotify = () => toast.success('Sucess!');
+	const errorNotify = (error: string) => toast.error(error);
+
+	const categories = trpc.proxy.category.getAll.useQuery();
+	const { mutateAsync } = trpc.proxy.category.create.useMutation({
+		async onError(error: any) {
+			if (error.message.includes('[\n')) {
+				const parsedError = JSON.parse(error.message);
+				errorNotify(parsedError[0].message);
+				return;
+			}
+
+			errorNotify(error.message);
+		},
+
+		async onSuccess() {
+			sucessNotify();
+
+			// refetches categories after a category is added
+			await utils.invalidateQueries('category.getAll');
+		},
+	});
+
+	const addCategory = async () => {
+		await mutateAsync({
+			name: categoryName,
+		});
+		// setCategoryName('');
+	};
 
 	return (
 		<>
@@ -15,6 +51,32 @@ const Home: NextPage = () => {
 			</Head>
 
 			<div className='flex min-h-screen w-screen flex-col items-center justify-center overflow-y-scroll p-4 font-lato'>
+				<label htmlFor='name'>Name</label>
+				<input
+					type='text'
+					value={productName}
+					onChange={(e) => setProductName(e.target.value)}
+					id='name'
+				/>
+				<label htmlFor='category'>Category</label>
+				<input
+					type='text'
+					value={categoryName}
+					onChange={(e) => setCategoryName(e.target.value)}
+					id='category'
+				/>
+				<label htmlFor='quantity'>Quantity</label>
+				<input
+					type='number'
+					value={productQuantity}
+					onChange={(e) => setProductQuantity(+e.target.value)}
+					id='quantity'
+				/>
+				<input
+					onClick={addCategory}
+					type='button'
+					value='Add Category'
+				/>
 				<h2 className='text-[3rem] font-extrabold text-gray-700 md:text-[5rem] lg:text-[5rem]'>
 					Create <span className='text-purple-300'>T3</span> App
 				</h2>
@@ -79,14 +141,13 @@ const Home: NextPage = () => {
 						</a>
 					</div>
 				</div>
-				<div className='flex w-full items-center justify-center pt-6 text-2xl text-blue-500'>
-					{hello.data ? (
-						<p>{hello.data.greeting}</p>
-					) : (
-						<p>Loading..</p>
-					)}
-					{users.data ? (
-						<p>&nbsp;{users.data[0]?.name}</p>
+				<div className='flex w-full flex-col items-center justify-center pt-6 text-2xl text-blue-500'>
+					{categories.data ? (
+						<>
+							{categories.data.map((category) => (
+								<p key={category.id}>{category.name}</p>
+							))}
+						</>
 					) : (
 						<p>Loading..</p>
 					)}

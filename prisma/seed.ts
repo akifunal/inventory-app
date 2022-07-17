@@ -3,7 +3,8 @@
  *
  * @link https://www.prisma.io/docs/guides/database/seed-database
  */
-import { type Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { CreateProductInput } from 'src/server/schema';
 
 const prisma = new PrismaClient();
 
@@ -27,6 +28,24 @@ const userData: UserDataInput[] = [
 	},
 ];
 
+const productData: CreateProductInput[] = [
+	{
+		name: 'Test keyboard',
+		quantity: 150,
+		categoryName: 'Keyboards',
+	},
+	{
+		name: 'Test mouse',
+		quantity: 15,
+		categoryName: 'Mouses',
+	},
+	{
+		name: 'Test headphones',
+		quantity: 430,
+		categoryName: 'Headphones',
+	},
+];
+
 async function main() {
 	console.log(`Start seeding ...`);
 	for (const u of userData) {
@@ -37,6 +56,29 @@ async function main() {
 		});
 		console.log(`Created user with name: ${user.email}`);
 	}
+
+	for (const p of productData) {
+		const { categoryName, ...rest } = p;
+		const product = await prisma.product.upsert({
+			where: { name: rest.name },
+			update: {},
+			create: {
+				...rest,
+				category: {
+					connectOrCreate: {
+						where: {
+							name: categoryName,
+						},
+						create: {
+							name: categoryName,
+						},
+					},
+				},
+			},
+		});
+		console.log(`Created product with name: ${product.name}`);
+	}
+
 	console.log(`Seeding finished.`);
 }
 

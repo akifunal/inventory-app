@@ -7,11 +7,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id   String @id @default(cuid())
-  name String
+model Product {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  description  String?
+  quantity     Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  category     Category @relation(fields: [categoryName], references: [name])
+  categoryName String
+
+  @@map("products")
 }
 
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  products    Product[]
+
+  @@map("categories")
+}
+
+// Necessary for Next auth
 model Account {
   id                       String  @id @default(cuid())
   userId                   String

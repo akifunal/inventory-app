@@ -2,8 +2,8 @@ import { prisma } from '@db/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const examples = async (req: NextApiRequest, res: NextApiResponse) => {
-	const examples = await prisma.example.findMany();
-	res.status(200).json(examples);
+	const products = await prisma.category.findMany();
+	res.status(200).json(products);
 };
 
 export default examples;
