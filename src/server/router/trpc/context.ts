@@ -9,7 +9,7 @@ import {
 import { authOptions as nextAuthOptions } from '../../../pages/api/auth/[...nextauth]';
 import { prisma } from '../../db/client';
 
-interface CreateContextOptions {
+export interface CreateContextOptions {
 	session: Session | null;
 	prisma: PrismaClient;
 }
@@ -18,7 +18,7 @@ interface CreateContextOptions {
  * Inner function for `createContext` where we create the context.
  * This is useful for testing when we don't want to mock Next.js' request/response
  */
-export const createContextInner = async (opts: CreateContextOptions) => ({
+const createContextInner = async (opts: CreateContextOptions) => ({
 	...opts,
 });
 

@@ -22,3 +22,10 @@ export const getMinLengthErrorMessage = (minLength: number, name: string) => {
 export const getMaxLengthErrorMessage = (maxLength: number, name: string) => {
 	return `${name} must be at most ${maxLength} characters long`;
 };
+
+/*	Test Helpers */
+
+// the one inside the context file returns error. swc is not able to handle it
+// const createContextInner = async (opts: CreateContextOptions) => ({
+// 	...opts,
+// });

@@ -51,7 +51,7 @@ export const productRouter = t.router({
 					if (e.code === 'P2002') {
 						throw new TRPCError({
 							code: 'CONFLICT',
-							message: `${input.name} already exists`,
+							message: `"${input.name}" product already exists`,
 						});
 					}
 				}
