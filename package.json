@@ -25,11 +25,13 @@
 		"db:pull": "prisma db pull",
 		"db:seed": "prisma db seed",
 		"db:studio": "prisma studio",
-		"db:reset": "prisma migrate reset",
+		"db:reset": "prisma migrate reset --force",
+		"db:prepare": "yarn db:migrate:prod && yarn db:seed",
 		"test": "jest --passWithNoTests",
 		"test:watch": "jest --watch --passWithNoTests",
+		"test:integration": "yarn db:reset && yarn test",
 		"test:ci": "jest --ci --passWithNoTests",
-		"test:staged": "jest --bail --findRelatedTests --passWithNoTests",
+		"test:staged": "yarn db:reset && jest --bail --passWithNoTests --coverage=false",
 		"updateSnapshots": "jest -u",
 		"cypress": "cypress open",
 		"cypress:headless": "cypress run",
@@ -37,7 +39,7 @@
 		"e2e:dev:headless": "start-server-and-test dev 3000 cypress:headless",
 		"e2e:prod": "yarn build && yarn wait:db && yarn db:migrate:dev && yarn start-server-and-test start 3000 cypress",
 		"e2e:prod:headless": "yarn build && yarn wait:db && yarn db:migrate:dev && yarn start-server-and-test start 3000 cypress:headless",
-		"e2e:ci": "yarn db:migrate:prod && yarn db:seed && yarn start-server-and-test start 3000 cypress:headless"
+		"e2e:ci": "yarn db:reset && yarn start-server-and-test start 3000 cypress:headless"
 	},
 	"prisma": {
 		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

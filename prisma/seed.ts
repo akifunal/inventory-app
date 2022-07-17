@@ -4,47 +4,9 @@
  * @link https://www.prisma.io/docs/guides/database/seed-database
  */
 import { PrismaClient } from '@prisma/client';
-import { CreateProductInput } from 'src/server/schema';
+import { categoryData, productData, userData } from '../mocks';
 
 const prisma = new PrismaClient();
-
-type UserDataInput = {
-	name: string | null | undefined;
-	email: string | undefined;
-};
-
-const userData: UserDataInput[] = [
-	{
-		name: 'test user',
-		email: 'test@prisma.io',
-	},
-	{
-		name: 'Nilu',
-		email: 'nilu@prisma.io',
-	},
-	{
-		name: 'Mahmoud',
-		email: 'mahmoud@prisma.io',
-	},
-];
-
-const productData: CreateProductInput[] = [
-	{
-		name: 'Test keyboard',
-		quantity: 150,
-		categoryName: 'Keyboards',
-	},
-	{
-		name: 'Test mouse',
-		quantity: 15,
-		categoryName: 'Mouses',
-	},
-	{
-		name: 'Test headphones',
-		quantity: 430,
-		categoryName: 'Headphones',
-	},
-];
 
 async function main() {
 	console.log(`Start seeding ...`);
@@ -55,6 +17,15 @@ async function main() {
 			create: u,
 		});
 		console.log(`Created user with name: ${user.email}`);
+	}
+
+	for (const c of categoryData) {
+		const category = await prisma.category.upsert({
+			where: { name: c.name },
+			update: {},
+			create: c,
+		});
+		console.log(`Created category with name: ${category.name}`);
 	}
 
 	for (const p of productData) {

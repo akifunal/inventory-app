@@ -39,7 +39,7 @@ export const categoryRouter = t.router({
 					if (e.code === 'P2002') {
 						throw new TRPCError({
 							code: 'CONFLICT',
-							message: `${input.name} category already exists`,
+							message: `"${input.name}" category already exists`,
 						});
 					}
 				}
