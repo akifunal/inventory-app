@@ -1,7 +1,8 @@
-import { useLayoutEffect, useState } from 'react';
-import Link from 'next/link';
+import Login from '@/components/Layout/Login';
 import { useLinks } from '@/context';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useLayoutEffect, useState } from 'react';
 
 type HeaderProps = {
 	defaultLinkStatuses?: Boolean[];
@@ -100,11 +101,7 @@ const Header = ({ defaultLinkStatuses }: HeaderProps) => {
 							</Link>
 						</li>
 					</ul>
-					<div className='hidden flex-row space-x-4 md:flex'>
-						<button className='flex h-10 w-24 items-center justify-center space-x-2 rounded-md bg-indigo-700 text-sm font-normal leading-3 text-white duration-150 hover:bg-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2'>
-							Sign In
-						</button>
-					</div>
+					<Login className='hidden md:flex' />
 					{/* Burger Icon */}
 					<div
 						id='bgIcon'
@@ -175,11 +172,8 @@ const Header = ({ defaultLinkStatuses }: HeaderProps) => {
 						show ? 'block' : 'hidden'
 					} mx-auto mt-4 md:hidden`}
 				>
-					<div className='mx-auto mt-4 flex w-80 flex-col gap-4 '>
-						<button className='flex h-10 w-full items-center justify-center space-x-2 rounded-md bg-indigo-700 text-sm font-normal leading-3 text-white duration-150 hover:bg-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2'>
-							Sign In
-						</button>
-					</div>
+					<Login className='mt-2 flex flex-row justify-end gap-4' />
+
 					<div className='mt-5 block w-full md:hidden '>
 						<div
 							onClick={() => setDropDown(!dropDown)}

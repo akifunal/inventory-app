@@ -1,10 +1,26 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { useSession } from 'next-auth/react';
 import Header from '../Header';
 
-describe('Input component', () => {
+jest.mock('next-auth/react');
+
+const mockSession = {
+	user: {
+		name: 'John Doe',
+		email: 'test@example.com',
+		image: 'https://example.com/avatar.png',
+	},
+};
+
+describe('Header component', () => {
 	it('should render and match the snapshot with default props', async () => {
 		// Arrange
+		(useSession as jest.Mock).mockReturnValue({
+			data: mockSession,
+			status: 'authenticated',
+		});
+
 		render(<Header defaultLinkStatuses={[true, false]} />);
 
 		// Act
@@ -17,6 +33,11 @@ describe('Input component', () => {
 
 	it("should handle mobile menu's click", async () => {
 		// Arrange
+		(useSession as jest.Mock).mockReturnValue({
+			data: mockSession,
+			status: 'authenticated',
+		});
+
 		render(<Header />);
 
 		// Act

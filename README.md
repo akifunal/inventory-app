@@ -4,6 +4,21 @@ Inventory app that will help us manage our inventory.
 
 Demo: [Live Inventory App](https://inventory-app-akifunal.vercel.app/)
 
+## Tech Stack
+
+-   [Next.js - React framework](https://nextjs.org)
+-   [tRPC - End-to-end typesafe API](https://trpc.io)
+-   [Zod - TypeScript-first schema validation](https://zod.dev)
+-   [Tailwind CSS](https://tailwindcss.com)
+-   [TypeScript](https://typescriptlang.org)
+-   [Prisma - ORM](https://prisma.io)
+-   [NextAuth.js - Auth](https://next-auth.js.org)
+
+## Deployment
+
+-   [Vercel - Serverless deployment](https://vercel.com)
+-   [Supabase - Database for serverless functions](https://supabase.com)
+
 ## Install dependencies
 
 ```bash

@@ -18,7 +18,7 @@ const ProductForm = ({
 	status,
 	onAddProduct,
 }: ProductFormProps) => {
-	const [categoryName, setCategoryName] = useState('');
+	const [categoryName, setCategoryName] = useState(categories?.[0] ?? '');
 	const [productName, setProductName] = useState('');
 	const [productQuantity, setProductQuantity] = useState(0);
 
