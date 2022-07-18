@@ -32,10 +32,10 @@ const customJestConfig = {
 	],
 	coverageThreshold: {
 		global: {
-			branches: 70,
-			functions: 70,
-			lines: 85,
-			statements: 85,
+			branches: 65,
+			functions: 58,
+			lines: 75,
+			statements: 78,
 		},
 	},
 };
