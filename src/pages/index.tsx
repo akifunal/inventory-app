@@ -18,12 +18,14 @@ const Home: NextPage = () => {
 
 	const products = trpc.proxy.product.getAll.useQuery();
 
+	const categories = trpc.proxy.category.getAll.useQuery();
+
 	const categoryNames = useMemo(() => {
-		if (!products.data) {
+		if (!categories.data) {
 			return [];
 		}
-		return products.data.map((product) => product.categoryName);
-	}, [products.data]);
+		return categories.data.map((category) => category.name);
+	}, [categories.data]);
 
 	const { mutateAsync: addProduct } = trpc.proxy.product.create.useMutation({
 		async onError(error: any) {
