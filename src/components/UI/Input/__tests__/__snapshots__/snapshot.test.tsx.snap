@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should render and match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <input
+    class="block w-full rounded-lg border border-gray-500 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-700 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500"
+    type="text"
+    value=""
+  />
+</DocumentFragment>
+`;
+
+exports[`Input component should render with the correct props 1`] = `
+<DocumentFragment>
+  <input
+    class="block w-full rounded-lg border border-gray-500 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-700 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500"
+    id="testid"
+    type="number"
+    value="10"
+  />
+</DocumentFragment>
+`;

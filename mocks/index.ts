@@ -32,7 +32,7 @@ export const productData: CreateProductInput[] = [
 		categoryName: 'Mouses',
 	},
 	{
-		name: 'Test headphones',
+		name: 'Test headphone',
 		quantity: 430,
 		categoryName: 'Headphones',
 	},

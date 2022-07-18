@@ -1,5 +1,10 @@
 import { getMaxLengthErrorMessage, getMinLengthErrorMessage } from '@/utils';
-import { Category, Product } from 'src/constants';
+import {
+	Category,
+	lettersOnlyRegex,
+	lettersOnlyRegexErrorMessage,
+	Product,
+} from 'src/constants';
 import z from 'zod';
 
 export const createProductSchema = z.object({
@@ -7,6 +12,7 @@ export const createProductSchema = z.object({
 	description: z.string().trim().max(Product.MaxDescriptionLength).optional(),
 	name: z
 		.string()
+		.regex(lettersOnlyRegex, lettersOnlyRegexErrorMessage)
 		.trim()
 		.min(0, getMinLengthErrorMessage(0, 'Name'))
 		.min(
@@ -20,6 +26,7 @@ export const createProductSchema = z.object({
 	quantity: z.number().min(Product.MinQuantity).max(Product.MaxQuantity),
 	categoryName: z
 		.string()
+		.regex(lettersOnlyRegex, lettersOnlyRegexErrorMessage)
 		.trim()
 		.min(0, getMinLengthErrorMessage(0, 'Category name'))
 		.min(
@@ -37,6 +44,7 @@ export type CreateProductInput = z.TypeOf<typeof createProductSchema>;
 export const getProductByNameSchema = z.object({
 	name: z
 		.string()
+		.regex(lettersOnlyRegex, lettersOnlyRegexErrorMessage)
 		.trim()
 		.min(0, getMinLengthErrorMessage(0, 'Name'))
 		.min(

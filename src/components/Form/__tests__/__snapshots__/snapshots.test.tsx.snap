@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should render and match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <section
+    class="mt-4 p-2"
+    id="forms"
+  >
+    <form>
+       Test 
+    </form>
+  </section>
+</DocumentFragment>
+`;

@@ -11,3 +11,6 @@ export const enum Category {
 	MaxNameLength = 30,
 	MaxDescriptionLength = 100,
 }
+
+export const lettersOnlyRegex = /^[a-zA-Z\s]*$/;
+export const lettersOnlyRegexErrorMessage = 'Only letters are allowed for name';

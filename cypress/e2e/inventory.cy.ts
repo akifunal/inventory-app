@@ -4,7 +4,7 @@ describe('Inventory app', () => {
 	});
 
 	it('test database connection', () => {
-		cy.findByText('Headphones').should('exist');
-		cy.findByText('Mouses').should('exist');
+		cy.get('table').contains('Test headphone');
+		cy.get('table').contains('Mouses');
 	});
 });

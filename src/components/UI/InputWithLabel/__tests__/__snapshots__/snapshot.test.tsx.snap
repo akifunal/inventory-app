@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputWithLabel component should render and match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-500"
+      for="test-first"
+    >
+      test first
+    </label>
+    <input
+      class="block w-full rounded-lg border border-gray-500 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-700 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500"
+      id="test-first"
+      type="text"
+      value="test"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`InputWithLabel component should render and match the snapshot when error 1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      class="mb-2 block text-sm font-medium text-red-700 dark:text-red-500"
+      for="test-error"
+    >
+      test error
+    </label>
+    <input
+      class="block w-full rounded-lg border border-gray-500 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-700 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500"
+      id="test-error"
+      type="text"
+      value="test3"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`InputWithLabel component should render and match the snapshot when success 1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      class="mb-2 block text-sm font-medium text-green-700 dark:text-green-500"
+      for="test-success"
+    >
+      test success
+    </label>
+    <input
+      class="block w-full rounded-lg border border-gray-500 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-700 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-500"
+      id="test-success"
+      type="text"
+      value="test2"
+    />
+  </div>
+</DocumentFragment>
+`;

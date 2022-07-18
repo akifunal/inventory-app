@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should render and match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+      for="countries"
+    />
+    <select
+      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+      id="countries"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input component should render and match the snapshot with the correct props 1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
+      for="countries"
+    >
+      Test label
+    </label>
+    <select
+      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+      id="countries"
+    >
+      <option
+        value="Option 1"
+      >
+        Option 1
+      </option>
+      <option
+        value="Option 2"
+      >
+        Option 2
+      </option>
+      <option
+        value="Option 3"
+      >
+        Option 3
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;

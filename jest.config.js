@@ -24,7 +24,6 @@ const customJestConfig = {
 	collectCoverage: true,
 	collectCoverageFrom: [
 		'<rootDir>/src/components/**/*.{js,jsx,ts,tsx}',
-		'<rootDir>/src/pages/index.{js,jsx,ts,tsx}',
 		'<rootDir>/src/server/router/{subroutes,utils}/**/*.{js,jsx,ts,tsx}',
 		'<rootDir>/src/server/schema/**/*.{js,ts}',
 		'<rootDir>/src/utils/helpers/**/*.{js,ts}',
@@ -33,10 +32,10 @@ const customJestConfig = {
 	],
 	coverageThreshold: {
 		global: {
-			branches: 65,
-			functions: 50,
-			lines: 60,
-			statements: 60,
+			branches: 70,
+			functions: 70,
+			lines: 85,
+			statements: 85,
 		},
 	},
 };
