@@ -16,7 +16,7 @@ Demo: [Live Inventory App](https://inventory-app-akifunal.vercel.app/)
 
 ## Deployment
 
--   [Vercel - Serverless deployment](https://vercel.com)
+-   [Vercel - Serverless functions](https://vercel.com)
 -   [Supabase - Database for serverless functions](https://supabase.com)
 
 ## Install dependencies
