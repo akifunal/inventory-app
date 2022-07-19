@@ -1,7 +1,7 @@
 import {
 	Category,
-	lettersOnlyRegex,
-	lettersOnlyRegexErrorMessage,
+	startsWithLetterRegex,
+	startsWithLetterRegexErrorMessage,
 } from 'src/constants';
 import { getMinLengthErrorMessage, getMaxLengthErrorMessage } from '@utils';
 import z from 'zod';
@@ -15,7 +15,7 @@ export const createCategorySchema = z.object({
 		.optional(),
 	name: z
 		.string()
-		.regex(lettersOnlyRegex, lettersOnlyRegexErrorMessage)
+		.regex(startsWithLetterRegex, startsWithLetterRegexErrorMessage)
 		.trim()
 		.min(0, getMinLengthErrorMessage(0, 'Name'))
 		.min(
@@ -33,7 +33,7 @@ export type CreateCategoryInput = z.TypeOf<typeof createCategorySchema>;
 export const getCategoryByNameSchema = z.object({
 	name: z
 		.string()
-		.regex(lettersOnlyRegex, lettersOnlyRegexErrorMessage)
+		.regex(startsWithLetterRegex, startsWithLetterRegexErrorMessage)
 		.trim()
 		.min(0, getMinLengthErrorMessage(0, 'Name'))
 		.min(
