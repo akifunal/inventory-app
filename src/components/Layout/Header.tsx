@@ -1,8 +1,9 @@
 import Login from '@/components/Layout/Login';
 import { useLinks } from '@/context';
+import { useIsomorphicLayoutEffect } from '@/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 
 type HeaderProps = {
 	defaultLinkStatuses?: Boolean[];
@@ -32,7 +33,7 @@ const Header = ({ defaultLinkStatuses }: HeaderProps) => {
 		setDropDown(true);
 	};
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (linkStatuses) {
 			setStyle(linkStatuses);
 		}

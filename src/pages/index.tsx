@@ -2,9 +2,10 @@ import Header from '@/components/Layout/Header';
 import { useLinksHandler } from '@/context';
 import ProductForm from '@/feature/Product/ProductForm';
 import ProductTable from '@/feature/Product/ProductTable';
+import { useIsomorphicLayoutEffect } from '@/hooks';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { trpc } from '../utils/trpc';
 
@@ -60,7 +61,7 @@ const Home: NextPage = () => {
 		});
 	};
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (linksHandler) linksHandler([true, false]);
 	}, [linksHandler]);
 

@@ -1,12 +1,13 @@
 import Header from '@/components/Layout/Header';
+import { useLinksHandler } from '@/context';
 import CategoryForm from '@/feature/Category/CategoryForm';
+import CategoryTable from '@/feature/Category/CategoryTable';
+import { useIsomorphicLayoutEffect } from '@/hooks';
+import { trpc } from '@/utils/trpc';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
-import { trpc } from '@/utils/trpc';
-import { useLinksHandler } from '@/context';
-import CategoryTable from '@/feature/Category/CategoryTable';
 
 const Categories: NextPage = () => {
 	const utils = trpc.useContext();
@@ -54,7 +55,7 @@ const Categories: NextPage = () => {
 		});
 	};
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (linksHandler) linksHandler([false, true]);
 	}, [linksHandler]);
 
