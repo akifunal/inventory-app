@@ -13,6 +13,7 @@ COPY . .
 
 # Disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV DOCKER true
 
 RUN yarn postinstall
 RUN yarn build
@@ -28,7 +29,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/next.config.mjs ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma/
