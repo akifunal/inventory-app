@@ -1,4 +1,5 @@
-const nextJest = require('next/jest');
+import type { Config } from 'jest';
+import nextJest from 'next/jest';
 
 const createJestConfig = nextJest({
 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -6,7 +7,8 @@ const createJestConfig = nextJest({
 });
 
 // Add any custom config to be passed to Jest
-const customJestConfig = {
+/** @type {import('jest').Config} */
+const customJestConfig: Config = {
 	roots: ['<rootDir>/src'],
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 	moduleDirectories: ['node_modules', '<rootDir>/'],
@@ -14,8 +16,8 @@ const customJestConfig = {
 		'^@/(.*)$': '<rootDir>/src/$1',
 		'^@api/(.*)$': '<rootDir>/src/pages/api/$1',
 		'^@db/(.*)$': '<rootDir>/src/server/db/$1',
-		'^@router$': '<rootDir>/src/server/router',
-		'^@router/(.*)$': '<rootDir>/src/server/router/$1',
+		'^@routers$': '<rootDir>/src/server/routers',
+		'^@routers/(.*)$': '<rootDir>/src/server/routers/$1',
 		'^@utils$': '<rootDir>/src/utils',
 		'^@utils/(.*)$': '<rootDir>/src/utils/$1',
 	},
@@ -40,4 +42,4 @@ const customJestConfig = {
 	},
 };
 
-module.exports = createJestConfig(customJestConfig);
+export default createJestConfig(customJestConfig);

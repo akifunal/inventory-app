@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
+		"checkJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
@@ -20,12 +21,19 @@
 			"@/*": ["./src/*"],
 			"@api/*": ["./src/pages/api/*"],
 			"@db/*": ["./src/server/db/*"],
-			"@router": ["./src/server/router"],
-			"@router/*": ["./src/server/router/*"],
+			"@routers": ["./src/server/routers"],
+			"@routers/*": ["./src/server/router/s*"],
 			"@utils": ["./src/utils"],
 			"@utils/*": ["./src/utils/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		".eslintrc.cjs",
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"**/*.cjs",
+		"**/*.mjs"
+	],
 	"exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }

@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
 	// Type check all TS files
 	'**/*.(ts|tsx)': () => 'tsc -p tsconfig.json --noEmit',
 
@@ -12,3 +12,5 @@ module.exports = {
 	// Format MarkDown and JSON files
 	'*.(md|json)': ['prettier --write'],
 };
+
+module.exports = config;
